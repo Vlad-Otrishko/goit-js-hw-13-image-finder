@@ -13,6 +13,7 @@ export default class ApiService {
                 this.page += 1;
                 this.totalFound = res.totalHits;
                 return res.hits;
+
             })
             .catch(err=>console.log(err));
     }

@@ -27,7 +27,8 @@ const observer = new IntersectionObserver(
     (entries, observer) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-         displayResult(); }
+          displayResult();
+}
       });
     },
     {rootMargin:'200px',
@@ -59,7 +60,10 @@ function onSubmit(e) {
 function displayResult() {
 
   galleryApi.fetchCards().then((data) => {
-    if (data.length< 1) { return noMatch(); }
+    if (data.length < 1) {
+      observer.unobserve(document.querySelector("#infinite-target"));// removing observation from target element after wron search query
+      return noMatch();
+ }
     if (galleryApi.totalFound < galleryApi.page * 12) {
       return reportEnd();
     }
